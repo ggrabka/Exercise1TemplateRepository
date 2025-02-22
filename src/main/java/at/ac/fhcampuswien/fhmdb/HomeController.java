@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -33,7 +34,12 @@ public class HomeController implements Initializable {
 
     public List<Movie> allMovies = Movie.initializeMovies();
 
-    private final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();   // automatically updates corresponding UI elements when underlying data changes
+    private final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();
+
+    Comparator<Movie> ascendingComparator =
+            (m1, m2) -> m1.getTitle().compareToIgnoreCase(m2.getTitle());
+    Comparator<Movie> descendingComparator =
+            ascendingComparator.reversed();// automatically updates corresponding UI elements when underlying data changes
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,15 +57,23 @@ public class HomeController implements Initializable {
 
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
-            if(sortBtn.getText().equals("Sort (asc)")) {
-                // TODO sort observableMovies ascending
-                sortBtn.setText("Sort (desc)");
-            } else {
-                // TODO sort observableMovies descending
-                sortBtn.setText("Sort (asc)");
-            }
+            handleSortButton();
         });
+    }
 
+    public void handleSortButton() {
+        if (sortBtn.getText().equals("Sort (asc)")) {
+            // TODO sort observableMovies ascending
+            sortMovies(observableMovies, ascendingComparator);
+            sortBtn.setText("Sort (desc)");
+        } else {
+            // TODO sort observableMovies descending
+            sortMovies(observableMovies, descendingComparator);
+            sortBtn.setText("Sort (asc)");
+        }
+    }
 
+    public void sortMovies(ObservableList<Movie> observableMovies, Comparator<Movie> comparator) {
+        FXCollections.sort(observableMovies, comparator);
     }
 }
