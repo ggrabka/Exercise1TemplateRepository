@@ -13,7 +13,7 @@ public class MovieCell extends ListCell<Movie> {
     private final Label title = new Label();
     private final Label detail = new Label();
     private final VBox layout = new VBox(title, detail);
-
+    //Todo:adding the genre
     @Override
     protected void updateItem(Movie movie, boolean empty) {
         super.updateItem(movie, empty);
