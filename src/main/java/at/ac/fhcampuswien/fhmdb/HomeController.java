@@ -34,7 +34,7 @@ public class HomeController implements Initializable {
 
     public List<Movie> allMovies = Movie.initializeMovies();
 
-    private final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();
+    final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();
 
     Comparator<Movie> ascendingComparator =
             (m1, m2) -> m1.getTitle().compareToIgnoreCase(m2.getTitle());

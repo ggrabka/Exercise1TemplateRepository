@@ -23,7 +23,6 @@ class HomeControllerTest {
         );
 
         // Act
-
         FXCollections.sort(testList, controller.ascendingComparator);
 
         // Assert
@@ -43,7 +42,6 @@ class HomeControllerTest {
         );
 
         // Act
-
         FXCollections.sort(testList, controller.ascendingComparator);
 
         // Assert
@@ -62,7 +60,6 @@ class HomeControllerTest {
         );
 
         // Act
-
         FXCollections.sort(testList, controller.descendingComparator);
 
         // Assert
@@ -82,7 +79,6 @@ class HomeControllerTest {
         );
 
         // Act
-
         FXCollections.sort(testList, controller.descendingComparator);
 
         // Assert
@@ -98,7 +94,6 @@ class HomeControllerTest {
         );
 
         // Act
-
         FXCollections.sort(testList, controller.descendingComparator);
 
         // Assert
@@ -114,7 +109,6 @@ class HomeControllerTest {
         );
 
         // Act
-
         FXCollections.sort(testList, controller.ascendingComparator);
 
         // Assert
