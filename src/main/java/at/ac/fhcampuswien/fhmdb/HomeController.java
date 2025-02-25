@@ -101,15 +101,11 @@ public class HomeController implements Initializable {
         String searchQuery = searchField.getText();
         Genre selectedGenre = (Genre) genreComboBox.getValue();
 
-        // Filme filtern basierend auf der Eingabe im Suchfeld und der Auswahl im Genre ComboBox
         List<Movie> filteredMovies = filterMovies(allMovies, searchQuery, selectedGenre);
 
-        // ObservableList mit gefilterten Filmen aktualisieren
         observableMovies.clear();
         observableMovies.addAll(filteredMovies);
 
-        // Wenn du eine ListView oder TableView verwendest, binde sie hier an observableMovies
-//         listView.setItems(observableMovies);
     }
 
     public List<Movie> filterMovies(List<Movie> movies, String query, Genre genre) {
