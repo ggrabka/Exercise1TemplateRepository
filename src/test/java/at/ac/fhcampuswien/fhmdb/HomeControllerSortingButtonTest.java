@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HomeControllerTest {
+class HomeControllerSortingButtonTest {
 
     @Test
     void testAscendingSort() {
@@ -21,6 +21,10 @@ class HomeControllerTest {
                 new Movie("A Title", "asc", List.of(Genre.COMEDY)),
                 new Movie("B Title", "asc", List.of(Genre.DRAMA))
         );
+
+        // Set up controller's movie list
+        controller.allMovies = testList;
+        controller.observableMovies.setAll(testList);
 
         // Act
         FXCollections.sort(testList, controller.ascendingComparator);

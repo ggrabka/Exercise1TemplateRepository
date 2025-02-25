@@ -18,7 +18,7 @@ import static org.testfx.matcher.control.ListViewMatchers.hasItems;
 //https://www.youtube.com/watch?v=PoUlJplInkg
 //https://github.com/TestFX/TestFX
 
-public class HomeControllerTestJavaFx extends ApplicationTest {
+public class HomeControllerSortingButtonTestJavaFx extends ApplicationTest {
 
     private HomeController controller;
 

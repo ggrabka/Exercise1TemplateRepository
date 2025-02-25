@@ -15,12 +15,13 @@ public class MovieCell extends ListCell<Movie> {
     private final Label detail = new Label();
     private final Label genre = new Label();
     private final VBox layout = new VBox(title, detail,genre);
-    //Todo:adding the genre
+
     @Override
     protected void updateItem(Movie movie, boolean empty) {
         super.updateItem(movie, empty);
         if (empty || movie == null) {
             setText(null);
+            setGraphic(null);
         } else {
             this.getStyleClass().add("movie-cell");
             title.setText(movie.getTitle());
@@ -43,10 +44,6 @@ public class MovieCell extends ListCell<Movie> {
             String finalGenres = genresText.toString();
 
            genre.setText(finalGenres);
-
-            title.setText(movie.getTitle());
-            title.setText(movie.getTitle());
-
 
             // color scheme
             title.getStyleClass().add("text-yellow");
