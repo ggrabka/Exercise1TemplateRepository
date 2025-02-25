@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.fhmdb.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Movie {
     private String title;
@@ -25,6 +26,9 @@ public class Movie {
     public List<Genre> getGenres() {
         return genres;
     }
+
+    //Liste mit vordefinierten Filmen
+    //Eine Liste von Movie-Objekten
 
     public static List<Movie> initializeMovies() {
         List<Movie> movies = new ArrayList<>();
@@ -168,6 +172,14 @@ public class Movie {
         movies.add(savingPrivateRyan);
 
         return movies;
+    }
+    public boolean matches(String query, Genre genre){
+        boolean matchesQuery = (query == null || query.isEmpty()) ||
+                title.toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)) ||
+                description.toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT));
+
+        boolean matchesGenre = (genre == null) || genres.contains(genre);
+        return matchesQuery && matchesGenre;
     }
 
 }
