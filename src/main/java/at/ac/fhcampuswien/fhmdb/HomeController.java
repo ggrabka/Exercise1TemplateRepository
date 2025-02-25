@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien.fhmdb;
 
+import at.ac.fhcampuswien.fhmdb.models.Genre;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import at.ac.fhcampuswien.fhmdb.ui.MovieCell;
 import com.jfoenix.controls.JFXButton;
@@ -12,8 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class HomeController implements Initializable {
     @FXML
@@ -26,14 +29,19 @@ public class HomeController implements Initializable {
     public JFXListView movieListView;
 
     @FXML
-    public JFXComboBox genreComboBox;
+    public JFXComboBox<Genre> genreComboBox;
 
     @FXML
     public JFXButton sortBtn;
 
     public List<Movie> allMovies = Movie.initializeMovies();
 
-    private final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();   // automatically updates corresponding UI elements when underlying data changes
+    final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();
+
+    Comparator<Movie> ascendingComparator =
+            (m1, m2) -> m1.getTitle().compareToIgnoreCase(m2.getTitle());
+    Comparator<Movie> descendingComparator =
+            ascendingComparator.reversed();// automatically updates corresponding UI elements when underlying data changes
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,22 +52,45 @@ public class HomeController implements Initializable {
         movieListView.setCellFactory(movieListView -> new MovieCell()); // use custom cell factory to display data
 
         // TODO add genre filter items with genreComboBox.getItems().addAll(...)
+        genreComboBox.getItems().addAll(Genre.values());
         genreComboBox.setPromptText("Filter by Genre");
+        genreComboBox.setOnAction(actionEvent -> filterByGenre());
 
         // TODO add event handlers to buttons and call the regarding methods
         // either set event handlers in the fxml file (onAction) or add them here
 
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
-            if(sortBtn.getText().equals("Sort (asc)")) {
-                // TODO sort observableMovies ascending
-                sortBtn.setText("Sort (desc)");
-            } else {
-                // TODO sort observableMovies descending
-                sortBtn.setText("Sort (asc)");
-            }
+            handleSortButton();
         });
+    }
 
+    public void handleSortButton() {
+        if (sortBtn.getText().equals("Sort (asc)")) {
+            // TODO sort observableMovies ascending
+            sortMovies(observableMovies, ascendingComparator);
+            sortBtn.setText("Sort (desc)");
+        } else {
+            // TODO sort observableMovies descending
+            sortMovies(observableMovies, descendingComparator);
+            sortBtn.setText("Sort (asc)");
+        }
+    }
 
+    public void filterByGenre() {
+        Genre selectedGenre = genreComboBox.getValue();
+
+        List<Movie> filteredMovies = allMovies.stream()
+                .filter(movie -> movie.getGenres().contains(selectedGenre))
+                .distinct()
+                .collect(Collectors.toList());
+
+        observableMovies.clear();
+        observableMovies.addAll(filteredMovies);
+        movieListView.refresh();
+    }
+
+    public void sortMovies(ObservableList<Movie> observableMovies, Comparator<Movie> comparator) {
+        FXCollections.sort(observableMovies, comparator);
     }
 }
