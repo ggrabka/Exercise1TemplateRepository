@@ -10,10 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomeControllerFilterTest {
+
+    HomeController controller = new HomeController();
+
     @Test
     void testFilterMoviesByTitle() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -27,7 +29,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByDescription() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -41,7 +42,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByGenre() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -55,7 +55,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByTitleAndGenre() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -71,7 +70,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByDescriptionAndGenre() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -87,7 +85,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesWithNoResults() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -99,7 +96,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByTitleWithNonexistentQuery() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -112,7 +108,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByDescriptionWithNonexistentQuery() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -125,7 +120,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByTitleAndGenreWithNonexistentQuery() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -138,7 +132,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByDescriptionAndGenreWithNonexistentQuery() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -150,7 +143,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByTitleWithSpecialCharacters() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -164,7 +156,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByDescriptionWithDifferentCase() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -178,7 +169,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByMultipleGenres() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -192,7 +182,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByTitleWithWhitespace() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -206,7 +195,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByDescriptionWithWhitespace() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When
@@ -220,7 +208,6 @@ public class HomeControllerFilterTest {
     @Test
     void testFilterMoviesByGenreAndNoQuery() {
         // Given
-        HomeController controller = new HomeController();
         List<Movie> movies = Movie.initializeMovies();
 
         // When

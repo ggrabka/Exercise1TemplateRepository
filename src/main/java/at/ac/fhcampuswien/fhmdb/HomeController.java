@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -99,20 +100,26 @@ public class HomeController implements Initializable {
 
     public void applyFilter() {
         String searchQuery = searchField.getText();
-        Genre selectedGenre = (Genre) genreComboBox.getValue();
+        Genre selectedGenre = genreComboBox.getValue();
 
         List<Movie> filteredMovies = filterMovies(allMovies, searchQuery, selectedGenre);
 
         observableMovies.clear();
         observableMovies.addAll(filteredMovies);
-
+        movieListView.refresh();
     }
 
     public List<Movie> filterMovies(List<Movie> movies, String query, Genre genre) {
-        return movies.stream()
-                .filter(movie -> applyQueryFilter(movie, query))
-                .filter(movie -> applyGenreFilter(movie, genre))
-                .collect(Collectors.toList());
+        List<Movie> filteredMovies = new ArrayList<>();
+
+        for (Movie movie : movies) {
+
+            if (applyQueryFilter(movie, query) && applyGenreFilter(movie, genre)) {
+                filteredMovies.add(movie);
+            }
+        }
+
+        return filteredMovies;
     }
 
     private boolean applyQueryFilter(Movie movie, String query) {
@@ -126,7 +133,7 @@ public class HomeController implements Initializable {
     }
 
     private boolean applyGenreFilter(Movie movie, Genre genre) {
-        if (genre == null) {
+        if (genre == null || genre == Genre.ALL) {
             return true;
         }
 
