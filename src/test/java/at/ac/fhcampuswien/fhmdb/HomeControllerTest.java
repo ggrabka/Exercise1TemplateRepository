@@ -185,7 +185,7 @@ class HomeControllerTest {
         assertEquals("Titanic", ((Movie) controller.movieListView.getItems().get(0)).getTitle());
     }
 
-     //Testet das Zurücksetzen des Filters.
+     //Testet das Zurücksetszen des Filters.
 
     @Test
     void testResetFilters() {

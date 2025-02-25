@@ -27,7 +27,7 @@ public class Movie {
         return genres;
     }
 
-    //Liste mit vordefinierten Filmen
+    //Liste mit vordefiniertten Filmen
     //Eine Liste von Movie-Objekten
 
     public static List<Movie> initializeMovies() {

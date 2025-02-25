@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
-
+//Start
 public class FhmdbApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {

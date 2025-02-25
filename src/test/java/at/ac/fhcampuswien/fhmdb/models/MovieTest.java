@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//Die Klasse MovieTest testet die Methoden der Movie-Klasse.
+//Die Klasse MovieTest testtet die Methoden der Movie-Klasse.
 
 class MovieTest {
     private Movie movie;
@@ -20,7 +20,7 @@ class MovieTest {
                 List.of(Genre.SCIENCE_FICTION, Genre.ACTION, Genre.THRILLER));
     }
 
-    //Testet, ob der Titel korrekt zurückgegeben wird.
+    //Testet, ob der  Titel korrekt zurückgegeben wird.
 
     @Test
     void testGetTitle() {

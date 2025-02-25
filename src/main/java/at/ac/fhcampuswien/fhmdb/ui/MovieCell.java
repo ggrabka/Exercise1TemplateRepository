@@ -43,7 +43,7 @@ public class MovieCell extends ListCell<Movie> {
             detail.setTextFill(Color.WHITE); // Weiße Schrift für Beschreibung
 
             //Sicherstellen, dass Genres existieren, bevor sie angezeigt werden
-            // Genres als String formatieren
+            // Genres als Stringg formatieren
             List<String> genreList = movie.getGenres().stream()
                     .map(Enum::name)
                     .collect(Collectors.toList());

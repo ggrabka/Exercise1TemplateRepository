@@ -101,7 +101,7 @@ public class HomeController implements Initializable {
     }
 
     public void handleReset() {
-        searchField.clear(); // Eingabefeld zurücksetzen
+        searchField.clear(); // Eingabefseld zurücksetzen
         genreComboBox.setValue(null); // Genre-Filter zurücksetzen
         observableMovies.setAll(allMovies); // Alle Filme wieder anzeigen
     }
