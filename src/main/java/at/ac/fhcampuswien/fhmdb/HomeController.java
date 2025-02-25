@@ -63,6 +63,9 @@ public class HomeController implements Initializable {
         sortBtn.setOnAction(actionEvent -> {
             handleSortButton();
         });
+        searchBtn.setOnAction(actionEvent -> {
+            applyFilter();
+        });
     }
 
     public void handleSortButton() {
@@ -92,5 +95,45 @@ public class HomeController implements Initializable {
 
     public void sortMovies(ObservableList<Movie> observableMovies, Comparator<Movie> comparator) {
         FXCollections.sort(observableMovies, comparator);
+    }
+
+    public void applyFilter() {
+        String searchQuery = searchField.getText();
+        Genre selectedGenre = (Genre) genreComboBox.getValue();
+
+        // Filme filtern basierend auf der Eingabe im Suchfeld und der Auswahl im Genre ComboBox
+        List<Movie> filteredMovies = filterMovies(allMovies, searchQuery, selectedGenre);
+
+        // ObservableList mit gefilterten Filmen aktualisieren
+        observableMovies.clear();
+        observableMovies.addAll(filteredMovies);
+
+        // Wenn du eine ListView oder TableView verwendest, binde sie hier an observableMovies
+//         listView.setItems(observableMovies);
+    }
+
+    public List<Movie> filterMovies(List<Movie> movies, String query, Genre genre) {
+        return movies.stream()
+                .filter(movie -> applyQueryFilter(movie, query))
+                .filter(movie -> applyGenreFilter(movie, genre))
+                .collect(Collectors.toList());
+    }
+
+    private boolean applyQueryFilter(Movie movie, String query) {
+        if (query == null || query.isEmpty()) {
+            return true;
+        }
+
+        String queryLowerCase = query.toLowerCase();
+        return movie.getTitle().toLowerCase().contains(queryLowerCase) ||
+                movie.getDescription().toLowerCase().contains(queryLowerCase);
+    }
+
+    private boolean applyGenreFilter(Movie movie, Genre genre) {
+        if (genre == null) {
+            return true;
+        }
+
+        return movie.getGenres().contains(genre);
     }
 }
